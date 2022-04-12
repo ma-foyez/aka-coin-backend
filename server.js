@@ -33,9 +33,7 @@ app.use(express.json()); //to accept json data;
 
 
 
-app.get('/', (req, res) => {
-    res.send("APP is running successfully!");
-});
+
 
 app.use('/api/akacoin/', walletRouter)
 app.use('/api/akacoin/', guidelineRoute)
