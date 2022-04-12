@@ -12,14 +12,26 @@ var cors = require('cors')
 
 dotenv.config();
 
-const PORT = process.env.PORT || 4200;
 const app = express();
+
+
+app.use(bodyParser.json({
+    limit: '50mb'
+}));
+
+app.use(bodyParser.urlencoded({
+    limit: '50mb',
+    parameterLimit: 100000,
+    extended: true
+}));
+
+const PORT = process.env.PORT || 4200;
 app.use(cors())
 connectDB();
 
 app.use(express.json()); //to accept json data;
-app.use(express.json({limit: '50mb'}));
-app.use(express.urlencoded({limit: '50mb'}));
+
+
 
 app.get('/', (req, res) => {
     res.send("APP is running successfully!");
