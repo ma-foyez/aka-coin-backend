@@ -21,11 +21,11 @@ const createNewWallet = asyncHandler(async (req, res) => {
 
     if (wallet) {
         res.status(201).json({
-            _id: wallet._id,
-            title: wallet.title,
-            link: wallet.link,
+            _id        : wallet._id,
+            title      : wallet.title,
+            link       : wallet.link,
             description: wallet.description,
-            message: "New Wallet Created Successfully!"
+            message    : "New Wallet Created Successfully!"
 
         });
     } else {
@@ -41,7 +41,7 @@ const walletList = asyncHandler(async (req, res) => {
     const wallet = await Wallet.find();
     if (wallet) {
         res.status(201).json({
-            wallet: wallet,
+            wallet : wallet,
             message: "Wallet list fetch Successfully!"
 
         });
@@ -68,11 +68,11 @@ const updateWallet = asyncHandler(async (req, res) => {
 
     if (wallet) {
         res.status(201).json({
-            _id: wallet._id,
-            title: wallet.title,
-            link: wallet.link,
+            _id        : wallet._id,
+            title      : wallet.title,
+            link       : wallet.link,
             description: wallet.description,
-            message: "Wallet Updated Successfully!"
+            message    : "Wallet Updated Successfully!"
 
         });
     } else {
@@ -80,6 +80,26 @@ const updateWallet = asyncHandler(async (req, res) => {
         throw new Error("Wallet not found");
     }
 });
+
+
+/**
+ * get single wallet data
+ */
+const getSingleWallet = asyncHandler(async (req, res) => {
+
+    const wallet = await Wallet.findById(req.params.id);
+
+    if (wallet) {
+        res.status(201).json({
+            data   : wallet,
+            message: "Wallet data fetch Successfully!"
+        });
+    } else {
+        res.status(400);
+        throw new Error("Wallet not found");
+    }
+});
+
 /**
  * delete single wallet data
  */
@@ -98,4 +118,4 @@ const deleteWallet = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { createNewWallet, updateWallet, walletList, deleteWallet }
+module.exports = { createNewWallet, updateWallet, walletList, deleteWallet, getSingleWallet }
