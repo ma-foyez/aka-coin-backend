@@ -38,7 +38,7 @@ app.use(express.json()); //to accept json data;
 app.use('/api/akacoin/', walletRouter)
 app.use('/api/akacoin/', guidelineRoute)
 
-app.use(notFound)
-app.use(errorHandler)
+// app.use(notFound)
+// app.use(errorHandler)
 
 app.listen(PORT, console.log(`Server start on PORT ${PORT}`.yellow.bold));
