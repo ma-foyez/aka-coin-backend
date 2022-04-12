@@ -6,7 +6,7 @@ const Wallet = require("../models/WalletModel");
  * Create new wallet 
  */
 const createNewWallet = asyncHandler(async (req, res) => {
-    const { title, link, description } = req.body;
+    const { title, link, description , iconPreview} = req.body;
 
     if (!title || !link || !description) {
         res.status(400);
@@ -17,6 +17,8 @@ const createNewWallet = asyncHandler(async (req, res) => {
         title,
         link,
         description,
+        iconPreview
+
     });
 
     if (wallet) {
@@ -25,6 +27,7 @@ const createNewWallet = asyncHandler(async (req, res) => {
             title      : wallet.title,
             link       : wallet.link,
             description: wallet.description,
+            iconPreview: wallet.iconPreview,
             message    : "New Wallet Created Successfully!"
 
         });
@@ -55,7 +58,7 @@ const walletList = asyncHandler(async (req, res) => {
  * update single wallet data
  */
 const updateWallet = asyncHandler(async (req, res) => {
-    const { title, link, description } = req.body;
+    const { title, link, description, iconPreview } = req.body;
 
     if (!title || !link || !description) {
         res.status(400);
@@ -72,6 +75,7 @@ const updateWallet = asyncHandler(async (req, res) => {
             title      : wallet.title,
             link       : wallet.link,
             description: wallet.description,
+            iconPreview: wallet.iconPreview,
             message    : "Wallet Updated Successfully!"
 
         });
